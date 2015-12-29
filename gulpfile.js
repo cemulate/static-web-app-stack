@@ -20,13 +20,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('copy', function () {
-    // Copy all application files except *.less and .js into the `dist` folder
-    return es.concat(
-        gulp.src(['src/img/**'])
-            .pipe(gulp.dest('dist/img')),
-        gulp.src(['src/*.*'])
-            .pipe(gulp.dest('dist'))
-    );
+    return gulp.src(['src/*.*']).pipe(gulp.dest('dist'))
 });
 
 gulp.task('scripts', function () {
