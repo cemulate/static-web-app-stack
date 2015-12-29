@@ -2,10 +2,10 @@
 // https://github.com/gulpjs/gulp
 
 var gulp    = require('gulp');
+var del     = require('del');
 var babel   = require('gulp-babel');
 var es2015  = require('babel-preset-es2015');
 var gutil   = require('gulp-util');
-var clean   = require('gulp-clean');
 var concat  = require('gulp-concat');
 var es      = require('event-stream');
 
@@ -15,8 +15,7 @@ var ghpages = require('gulp-gh-pages');
 
 gulp.task('clean', function () {
     // Clear the destination folder
-    return gulp.src('dist/**/*.*', { read: false })
-        .pipe(clean({ force: true }));
+    return del(['dist/**/*.*']);
 });
 
 gulp.task('copy', function () {
@@ -25,7 +24,7 @@ gulp.task('copy', function () {
 
 gulp.task('scripts', function () {
     // Concatenate, babelify and copy all JavaScript (except vendor scripts)
-    return gulp.src(['src/js/**/*.js', '!src/js/include.js'])
+    return gulp.src(['src/js/**/*.js'])
         .pipe(concat('app.js'))
         .pipe(babel({
             presets: [es2015]
