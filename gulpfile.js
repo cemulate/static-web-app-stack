@@ -11,6 +11,8 @@ var es      = require('event-stream');
 
 var connect = require('gulp-connect');
 
+var ghpages = require('gulp-gh-pages');
+
 gulp.task('clean', function () {
     // Clear the destination folder
     return gulp.src('dist/**/*.*', { read: false })
@@ -60,7 +62,13 @@ gulp.task('server', function() {
     });
 });
 
-gulp.task('dist', ['clean', 'copy', 'frontend', 'scripts']);
+// gh-pages
 
+gulp.task('ghpages', function() {
+    return gulp.src('./dist/**/*')
+        .pipe(ghpages());
+});
+
+gulp.task('dist', ['clean', 'copy', 'frontend', 'scripts']);
 // Development
 gulp.task('default', ['clean', 'copy', 'frontend', 'scripts', 'watch', 'server']);
