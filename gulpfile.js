@@ -9,6 +9,7 @@ var gutil   = require('gulp-util');
 var concat  = require('gulp-concat');
 var es      = require('event-stream');
 
+var runSeq  = require('run-sequence');
 var connect = require('gulp-connect');
 
 var ghpages = require('gulp-gh-pages');
@@ -62,6 +63,10 @@ gulp.task('ghpages', function() {
         .pipe(ghpages());
 });
 
-gulp.task('dist', ['clean', 'copy', 'frontend', 'scripts']);
-// Development
-gulp.task('default', ['clean', 'copy', 'frontend', 'scripts', 'watch', 'server']);
+gulp.task('dist', function(cb) {
+    runSeq('clean', ['copy', 'frontend', 'scripts'], cb);
+});
+
+gulp.task('default', function(cb) {
+    runSeq('clean', ['copy', 'frontend', 'scripts'], 'watch', 'server', cb);
+});
