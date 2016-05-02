@@ -2,17 +2,15 @@
 // https://github.com/gulpjs/gulp
 
 var gulp    = require('gulp');
-var del     = require('del');
 var babel   = require('gulp-babel');
 var es2015  = require('babel-preset-es2015');
 var gutil   = require('gulp-util');
+var del     = require('del');
 var concat  = require('gulp-concat');
 var es      = require('event-stream');
-
 var runSeq  = require('run-sequence');
+var ghPages = require('gulp-gh-pages');
 var connect = require('gulp-connect');
-
-var ghpages = require('gulp-gh-pages');
 
 gulp.task('clean', function () {
     // Clear the destination folder
@@ -20,7 +18,14 @@ gulp.task('clean', function () {
 });
 
 gulp.task('copy', function () {
-    return gulp.src(['src/*.*']).pipe(gulp.dest('dist'))
+    return es.concat(
+        gulp.src(['src/**/*.*', '!src/js/**/*.*'])
+            .pipe(gulp.dest('dist/static')),
+        gulp.src(['src/*.*'])
+            .pipe(gulp.dest('dist')),
+        gulp.src(['package.json'])
+            .pipe(gulp.dest('dist'))
+    );
 });
 
 gulp.task('scripts', function () {
@@ -36,7 +41,7 @@ gulp.task('scripts', function () {
 gulp.task('frontend', function() {
     var frontendPackages = ["foundation-sites", "jquery"];
 
-    var glob = "node_modules/+(" + frontendPackages.join("|") + ")/**/*.*";
+    var glob = "node_modules/+(" + frontendPackages.join("|") + ")/**/*";
     gutil.log(glob);
 
     return gulp.src([glob])
@@ -46,7 +51,7 @@ gulp.task('frontend', function() {
 // Dev server
 
 gulp.task('watch', function() {
-    gulp.watch('src/*.*', ['copy']);
+    gulp.watch(['src/**/*.*', '!src/js/**/*.*'], ['copy']);
     gulp.watch('src/js/*.js', ['scripts']);
 });
 
@@ -58,9 +63,9 @@ gulp.task('server', function() {
 
 // gh-pages
 
-gulp.task('ghpages', function() {
+gulp.task('deploy', function() {
     return gulp.src('./dist/**/*')
-        .pipe(ghpages());
+        .pipe(ghPages());
 });
 
 gulp.task('dist', function(cb) {
