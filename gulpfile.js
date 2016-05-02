@@ -20,7 +20,7 @@ gulp.task('clean', function () {
 gulp.task('copy', function () {
     return es.concat(
         gulp.src(['src/**/*.*', '!src/js/**/*.*'])
-            .pipe(gulp.dest('dist/static')),
+            .pipe(gulp.dest('dist')),
         gulp.src(['src/*.*'])
             .pipe(gulp.dest('dist')),
         gulp.src(['package.json'])
