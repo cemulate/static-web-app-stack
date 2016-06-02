@@ -11,6 +11,8 @@ var es      = require('event-stream');
 var runSeq  = require('run-sequence');
 var ghPages = require('gulp-gh-pages');
 var connect = require('gulp-connect');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 
 gulp.task('clean', function () {
     // Clear the destination folder
