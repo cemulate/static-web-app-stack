@@ -28,14 +28,23 @@ gulp.task('copy', function () {
     );
 });
 
-gulp.task('scripts', function () {
-    // Concatenate, babelify and copy all JavaScript (except vendor scripts)
+gulp.task('babel', function () {
     return gulp.src(['src/js/**/*.js'])
         .pipe(concat('app.js'))
         .pipe(babel({
             presets: [es2015]
         }))
-        .pipe(gulp.dest('dist/js'))
+        .pipe(gulp.dest('dist/js'));
+});
+
+gulp.task('browserify', function() {
+    var b = browserify('dist/js/app.js').bundle();
+    return b.pipe(source('app.js')).pipe(gulp.dest('dist/js'));
+});
+
+var needBrowserify = false;
+gulp.task('scripts', function() {
+    needBrowserify ? runSeq('babel', 'browserify') : runSeq('babel');
 });
 
 gulp.task('frontend', function() {
