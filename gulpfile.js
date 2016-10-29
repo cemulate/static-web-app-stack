@@ -32,28 +32,16 @@ gulp.task('copy', function () {
 
 gulp.task('babel', function () {
     return gulp.src(['src/js/**/*.js'])
-        .pipe(concat('app.js'))
-        .pipe(babel({
-            presets: [es2015]
-        }))
+        .pipe(babel())
         .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('browserify', function() {
-    var b = browserify('dist/js/app.js').bundle();
-    return b.pipe(source('app.js')).pipe(gulp.dest('dist/js'));
-});
-
-var needBrowserify = false;
-gulp.task('scripts', function() {
-    needBrowserify ? runSeq('babel', 'browserify') : runSeq('babel');
-});
+gulp.task('scripts', ['babel']);
 
 gulp.task('frontend', function() {
-    var frontendPackages = ["foundation-sites", "jquery"];
+    var frontendPackages = ["babel-polyfill", "systemjs", "foundation-sites", "jquery"];
 
     var glob = "node_modules/+(" + frontendPackages.join("|") + ")/**/*";
-    gutil.log(glob);
 
     return gulp.src([glob])
         .pipe(gulp.dest('dist/lib'));
