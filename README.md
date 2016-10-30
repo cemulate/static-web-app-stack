@@ -2,6 +2,7 @@
 
 A minimal boilerplate for a front-end-only web app using full ES6 features, with a bit of example code.
 Uses `npm` only for package management.
+The `gulpfile` is documented with the intended purpose of each task.
 The gulpfile comes with the following features:
 
 * Full ES6 transpilation with Babel -- transpiles ES6 modules to `SystemJS`
@@ -10,7 +11,7 @@ The gulpfile comes with the following features:
 
 The following base set of front-end libraries are included:
 
-* `systemjs`, for implemented the transpiled module syntax
+* `systemjs`, for implementing the transpiled module syntax
 * `foundation-sites`, for the venerable [Foundation](http://foundation.zurb.com/sites.html) UI/CSS framework
 * `jquery`, for basic DOM manipulation. If writing a more intensive web app, its highly recommended to replace this entirely with a decent MVC framework, such as [Vue](https://vuejs.org/).
 
