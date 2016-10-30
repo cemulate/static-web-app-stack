@@ -4,15 +4,11 @@
 var gulp    = require('gulp');
 var babel   = require('gulp-babel');
 var es2015  = require('babel-preset-es2015');
-var gutil   = require('gulp-util');
 var del     = require('del');
-var concat  = require('gulp-concat');
 var es      = require('event-stream');
 var runSeq  = require('run-sequence');
 var ghPages = require('gulp-gh-pages');
 var connect = require('gulp-connect');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
 
 gulp.task('clean', function () {
     // Clear the destination folder

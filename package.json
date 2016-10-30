@@ -3,7 +3,7 @@
   "description": "",
   "repository": "",
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-systemjs": "^6.18.0",
+    "babel-plugin-transform-es2015-modules-systemjs": "0.0.0",
     "babel-preset-es2015": "0.0.0",
     "del": "0.0.0",
     "event-stream": "0.0.0",
@@ -14,8 +14,8 @@
     "run-sequence": "0.0.0"
   },
   "dependencies": {
-    "babel-polyfill": "^6.16.0",
-    "systemjs": "^0.19.40",
+    "babel-polyfill": "0.0.0",
+    "systemjs": "0.0.0",
 
     "foundation-sites": "0.0.0",
     "jquery": "0.0.0"
