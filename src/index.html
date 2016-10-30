@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Libs -->
+        <!-- This is where we include things that were just copied to the /dist folder by the 'frontend' task -->
         <script src="lib/babel-polyfill/dist/polyfill.min.js"></script>
         <script src="lib/systemjs/dist/system.js"></script>
 
@@ -18,6 +19,7 @@
     </head>
     <body>
 
+        <!-- A basic foundation top bar -->
         <div class="top-bar">
             <div class="top-bar-left">
                 <ul class="dropdown menu" data-dropdown-menu>
@@ -31,6 +33,7 @@
             </div>
         </div>
 
+        <!-- Tell SystemJS the base url for scripts is the /dist/js folder, and load the main entry point app.js -->
         <script>
             System.config({"baseURL": "js"});
             System.import("app.js");
