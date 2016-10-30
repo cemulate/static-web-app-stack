@@ -15,5 +15,6 @@ The following base set of front-end libraries are included:
 * `foundation-sites`, for the venerable [Foundation](http://foundation.zurb.com/sites.html) UI/CSS framework
 * `jquery`, for basic DOM manipulation. If writing a more intensive web app, its highly recommended to replace this entirely with a decent MVC framework, such as [Vue](https://vuejs.org/).
 
-`package.json` comes with all version numbers at `0.0.0`, it's recommended to use `npm-check-updates -u` to update every package in the file to its latest version.
+The `package.json` comes with all version numbers at `0.0.0` --- this is so that you can switch to the latest version of the included packages each time you start a new project with this boilerplate.
+It's recommended to use `npm-check-updates -u` to update every package in the file to its latest version.
 You can install `npm-check-updates` globally with `npm install -g npm-check-updates`.
