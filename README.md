@@ -1,5 +1,8 @@
 # Static Web App Stack
 
+> # Status: Abandoned
+> This was my stack as of 2015
+
 A minimal boilerplate for a front-end-only web app using full ES6 features, with a bit of example code.
 Uses `npm` only for package management.
 The `gulpfile` is documented with the intended purpose of each task.
