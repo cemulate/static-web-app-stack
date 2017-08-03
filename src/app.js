@@ -1,1 +1,1 @@
-import 'foundation-sites/dist/css/foundation.css';
+import './styles/theme.scss';

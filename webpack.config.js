@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   context: path.resolve(__dirname, './src'),
@@ -11,14 +12,29 @@ module.exports = {
     path: path.resolve(__dirname, './dist')
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './src')
+    contentBase: path.resolve(__dirname, './src'),
+    disableHostCheck: true
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
+      },
+      {
+         test: /\.(png|jpg|gif)$/,
+         use: [
+           {
+             loader: 'url-loader',
+             options: {
+               limit: 8192
+             }
+           }
+         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new ExtractTextPlugin('styles.css')
+  ]
 };
