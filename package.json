@@ -4,8 +4,8 @@
   "description": "A new web application",
   "author": "Author",
   "scripts": {
-    "serve": "webpack-dev-server",
-    "build": "webpack"
+    "serve": "webpack-dev-server -d",
+    "build": "webpack -p"
   },
   "devDependencies": {
     "css-loader": "^0.28.4",
