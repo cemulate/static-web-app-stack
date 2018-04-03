@@ -1,23 +1,20 @@
-const path = require('path');
 const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname, './src'),
-  entry: {
-    app: './index.js',
-  },
-  output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, './dist')
-  },
   devServer: {
     contentBase: path.resolve(__dirname, './src'),
     disableHostCheck: true
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        loader: 'babel-loader',
+      },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('css-loader!sass-loader'),
@@ -36,7 +33,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new UglifyJSPlugin(),
-    new ExtractTextPlugin('styles.css')
+    new ExtractTextPlugin('styles.css'),
+    new CopyWebpackPlugin([
+      { from: './src/index.html', to: './index.html' }
+    ])
   ]
 };
