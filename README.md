@@ -1,6 +1,6 @@
 # Static Web App Stack
 
-A minimal front-end web application using [Webpack](https://webpack.github.io/) and [Foundation 6.4](http://foundation.zurb.com/sites.html)
+A minimal front-end web application using [Webpack](https://webpack.github.io/) and [Bulma](https://bulma.io/)
 
 To try it out, clone the repo and run
 
