@@ -1,10 +1,12 @@
 import './styles/theme.scss';
-import Test from './lib/Example.js';
+import Vue from 'vue';
+import App from './components/App.vue';
 
-let x = { a: 1, b: 2 };
-let y = { b: -2, c: 3 };
-
-let z = { ...x, ...y };
-
-let myTest = new Test(z);
-myTest.printVal();
+const body = document.getElementsByTagName('body')[0];
+const app = document.createElement('div');
+app.setAttribute('id', 'app');
+body.insertBefore(app, body.firstChild);
+new Vue({
+    el: '#app',
+    render: h => h(App),
+});
