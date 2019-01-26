@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -40,8 +40,9 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({ filename: 'styles.css' }),
-    new CopyWebpackPlugin([
-      { from: './src/index.html', to: './index.html' }
-    ])
+    new HtmlWebpackPlugin({
+      meta: { viewport: 'width=device-width, initial-scale=1' },
+      title: 'App',
+    }),
   ]
 };
