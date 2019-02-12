@@ -2,6 +2,10 @@ import './styles/theme.scss';
 import Vue from 'vue';
 import App from './components/App.vue';
 
+if (navigator.serviceWorker != null) {
+    window.addEventListener('load', () => navigator.serviceWorker.register('service-worker.js'));
+}
+
 const body = document.getElementsByTagName('body')[0];
 const app = document.createElement('div');
 app.setAttribute('id', 'app');
