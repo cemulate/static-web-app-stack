@@ -5,8 +5,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devServer: {
-    contentBase: path.resolve(__dirname, './src'),
-    disableHostCheck: true
+    static: {
+      directory: path.resolve(__dirname, './src'),
+    },
   },
   module: {
     rules: [
